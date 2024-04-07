@@ -58,7 +58,7 @@ function Login() {
       <Grid container justifyContent="flex">
         <Grid item>
           <Link href="#" variant="body2">
-            Don't you have an account? Sing up
+            Don't have an account? Sign up 
           </Link>
         </Grid>
       </Grid>
