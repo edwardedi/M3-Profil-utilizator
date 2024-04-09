@@ -18,7 +18,7 @@ function Welcome() {
           <SentimentSatisfiedIcon /> 
         </Avatar>
         <Typography variant="h5" component="h1" align="center" gutterBottom>
-          Welcome
+          Welcome to Booking Iași
         </Typography>
         <Button
           component={RouterLink} //RouterLink pentru calea catre pagina de autentificare

@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<Welcome />} /> {/* optional pui ruta catre pagina wellcome la fel si jos */}
+          <Route path="/" element={<Welcome />} /> {}
           <Route path="/login" element={<Login />} /> {}
         </Routes>
       </Router>
