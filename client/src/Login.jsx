@@ -1,7 +1,9 @@
+
 import React, { useState } from 'react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { Container, Typography, TextField, Button, Grid, Link, Avatar, Box } from '@mui/material';
+import { Container, Typography, TextField, Button, Grid, Avatar, Box } from '@mui/material';
 import axios from 'axios';
+import { Link as RouterLink } from 'react-router-dom';
 
 function Login() {
   const [message, setMessage] = useState('');
@@ -11,20 +13,16 @@ function Login() {
     const formData = new FormData(event.target);
     const email = formData.get('email');
     const password = formData.get('password');
-    console.log('Email:', email, 'Password:', password);//pt backend sa fie acolo
 
     try {
       const response = await axios.post('http://localhost:3001/login', { email, password });
       setMessage(response.data.message);
-      console.log("Received from server: ", response.data.message);
     } catch (error) {
       console.error('Error:', error.message);
     }
-    
   };
 
   return (
-
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
@@ -51,6 +49,7 @@ function Login() {
             name="email"
             autoComplete="email"
             autoFocus
+            className='TextField'
           />
           <TextField
             variant="outlined"
@@ -62,6 +61,7 @@ function Login() {
             type="password"
             id="password"
             autoComplete="current-password"
+            className='TextField'
           />
           <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
             Login
@@ -69,12 +69,13 @@ function Login() {
         </form>
         {message && <div>{message}</div>}
         <Grid container justifyContent="flex">
-          <Grid item>
-            <Link href="#" variant="body2">
-              Don't have an account? Sign up
-            </Link>
-          </Grid>
+        <Grid item>
+          <Typography variant="body2" color="textSecondary" align="center" gutterBottom>
+            You don't have an account? <RouterLink to="/signup">Sign up</RouterLink>
+          </Typography>
         </Grid>
+      </Grid>
+
       </Box>
     </Container>
   );
