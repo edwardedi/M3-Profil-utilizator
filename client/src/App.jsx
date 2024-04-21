@@ -4,7 +4,7 @@ import './App.css';
 import Login from './Login.jsx';
 import Signup from './Singup.jsx';
 import Welcome from './Wellcome.jsx'; 
-
+import UserProf from './UserProf.jsx';
 function App() {
   return (
     <div className="App">
@@ -13,6 +13,7 @@ function App() {
           <Route path="/" element={<Welcome />} /> {}
           <Route path="/login" element={<Login />} /> {}
           <Route path="/signup" element={<Signup />} /> {}
+          <Route path="/user-profile" element={<UserProf />} /> {}
         </Routes>
       </Router>
     </div>

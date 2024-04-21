@@ -39,9 +39,19 @@ function Singup() {
             margin="normal"
             required
             fullWidth
-            id="Name"
-            label="Name"
-            name="name"
+            id="First Name"
+            label="First Name"
+            name="givenName"
+            className='TextField'
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="Last Name"
+            label="Last Name"
+            name="familyName"
             className='TextField'
           />
           <TextField
