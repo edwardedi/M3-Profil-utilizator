@@ -2,18 +2,24 @@
 import React, { useState } from 'react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Container, Typography, TextField, Button, Grid, Avatar, Box } from '@mui/material';
+import axios from 'axios';
+import { Link as RouterLink } from 'react-router-dom';
 
-function Singup() {
-  const [message] = useState('');
+function Signup() {
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const name  =  formData.get('name');
+    const givenName  =  formData.get('givenName');
+    const familyName  =  formData.get('familyName');
     const username  =  formData.get('username');
     const email = formData.get('email');
     const password = formData.get('password');
-    console.log('Name:', name, 'Username:',username,'Email:', email, 'Password:', password);
+    console.log('Name:', givenName, 'Username:',username,'Email:', email, 'Password:', password);
+
+    const response = await axios.post('http://localhost:3001/signup', { givenName, familyName, username, email, password});
+    setMessage(response.data.message);
 
   };
 
@@ -105,4 +111,4 @@ function Singup() {
   );
 }
 
-export default Singup;
+export default Signup;

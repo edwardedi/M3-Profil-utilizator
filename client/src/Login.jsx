@@ -14,12 +14,9 @@ function Login() {
     const email = formData.get('email');
     const password = formData.get('password');
 
-    try {
-      const response = await axios.post('http://localhost:3001/login', { email, password });
-      setMessage(response.data.message);
-    } catch (error) {
-      console.error('Error:', error.message);
-    }
+    const response = await axios.post('http://localhost:3001/login', { email, password });
+    setMessage(response.data.message);
+   
   };
 
   return (
