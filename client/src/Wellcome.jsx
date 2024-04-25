@@ -9,7 +9,7 @@ function Welcome() {
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
-          marginTop: 25,
+          marginTop: 0,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',

@@ -11,10 +11,10 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const email = formData.get('email');
+    const username = formData.get('username');
     const password = formData.get('password');
-
-    const response = await axios.post('http://localhost:3001/login', { email, password });
+    
+    const response = await axios.post('http://localhost:3001/login', { username, password });
     setMessage(response.data.message);
    
   };
@@ -23,7 +23,7 @@ function Login() {
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: 0,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -41,10 +41,10 @@ function Login() {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
             autoFocus
             className='TextField'
           />

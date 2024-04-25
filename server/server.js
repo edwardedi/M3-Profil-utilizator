@@ -10,7 +10,7 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'students'
+  database: 'bookingiasi'
 });
 
 connection.connect((err) => {
@@ -26,9 +26,9 @@ app.use(bodyParser.json());
 
 
 app.post('/login', (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
 
-  connection.query('SELECT * FROM students WHERE email = ? LIMIT 1', [email], (error, results, fields) => {
+  connection.query('SELECT * FROM users WHERE username = ? LIMIT 1', [username], (error, results, fields) => {
       if (error) {
           console.error('Error querying database:', error);
           res.send({ success: false, message: 'An error occurred while logging in. Please try again later.' });
@@ -36,7 +36,7 @@ app.post('/login', (req, res) => {
       }
       
       if (results.length === 0) {
-          res.send({ success: false, message: 'Login failed! Email not found.' });
+          res.send({ success: false, message: 'Login failed! Username not found.' });
           return;
       }
 
@@ -57,7 +57,7 @@ app.post('/login', (req, res) => {
 app.post('/signup', (req, res) => {
   const { givenName, familyName, username, email, password } = req.body;
 
-  connection.query('SELECT * FROM students WHERE username = ? LIMIT 1', [username], (error, results, fields) => {
+  connection.query('SELECT * FROM users WHERE username = ? LIMIT 1', [username], (error, results, fields) => {
       if (error) {
           console.error('Error querying database:', error);
           res.status(500).json({ success: false, message: 'An error occurred while signing up. Please try again later.' });
@@ -73,7 +73,7 @@ app.post('/signup', (req, res) => {
       hash.update(password);
       const hashedPassword = hash.digest('hex');
 
-      connection.query('INSERT INTO students (givenName, familyName, username, email, password) VALUES (?, ?, ?, ?, ?)', [givenName, familyName, username, email, hashedPassword], (error, results, fields) => {
+      connection.query('INSERT INTO users (givenName, familyName, username, email, password) VALUES (?, ?, ?, ?, ?)', [givenName, familyName, username, email, hashedPassword], (error, results, fields) => {
           if (error) {
               console.error('Error inserting user into database:', error);
               res.status(500).json({ success: false, message: 'An error occurred while signing up. Please try again later.' });
