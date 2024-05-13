@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Checkbox, FormControlLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material';
-import { Link } from 'react-router-dom';
+
 
 function HealthForm() {
   const [birthDate, setBirthDate] = useState('');
@@ -14,22 +14,80 @@ function HealthForm() {
   const [sportsFrequency, setSportsFrequency] = useState({}); 
   const [sportsIntensity, setSportsIntensity] = useState({}); 
 
-  const handleSaveHealthData = () => {
+  ///--///
+  const handleSaveHealthData = async () => {
     console.log('Saving health data...');
-    console.log({
-      birthDate,
-      height,
-      weight,
-      gender,
-      needsSpecialAssistance,
-      walkFrequency,
-      walkDistance,
-      sportsPracticed,
-      sportsFrequency,
-      sportsIntensity
+    let activityIndex = 0;
+  
+    // punctele pentru mers pe jos
+    if (walkFrequency && walkDistance) {
+      const walkPoints = parseInt(walkFrequency) * parseInt(walkDistance);
+      activityIndex += walkPoints * 2;
+    }
+  
+    // punctele pentru sport
+    sportsPracticed.forEach(sport => {
+      const frequencyPoints = {
+        'Less than once a week': 1,
+        '1-2': 3,
+        '3-5': 5,
+        '6-7': 7
+      };
+      const intensityPoints = {
+        'Low': 1,
+        'Medium': 3,
+        'High': 5
+      };
+      const sportFrequency = sportsFrequency[sport];
+      const sportIntensity = sportsIntensity[sport];
+      if (sportFrequency && sportIntensity) {
+        // punctele pe activitate
+        let pointsForSport = 2;
+        
+        if (sport !== 'swimming' && sport !== 'something else' &&  sport !== 'running' &&  sport !== 'going to gym' ) {
+          pointsForSport = 3;
+        }
+        const frequencyValue = frequencyPoints[sportFrequency];
+        const intensityValue = intensityPoints[sportIntensity];
+        activityIndex += pointsForSport * frequencyValue * intensityValue;
+      }
     });
+  
+    activityIndex = Math.min(activityIndex, 100);
+  
+    console.log('Activity Index:', activityIndex);
+  
+    try {
+      const response = await fetch('http://localhost:3000/api/saveHealthData', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          birthDate,
+          height,
+          weight,
+          gender,
+          needsSpecialAssistance,
+          walkFrequency,
+          walkDistance,
+          sportsPracticed,
+          sportsFrequency,
+          sportsIntensity,
+          activityIndex
+        })
+      });
+      
+      if (response.ok) {
+        console.log('Health data saved successfully.');
+      } else {
+        console.error('Failed to save health data.');
+      }
+    } catch (error) {
+      console.error('Error while saving health data:', error);
+    }
   };
-
+  //----///
   const handleSportSelection = (sport) => {
     if (sportsPracticed.includes(sport)) {
       const updatedSports = sportsPracticed.filter(item => item !== sport);

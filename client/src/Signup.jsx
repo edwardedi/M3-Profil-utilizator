@@ -95,7 +95,7 @@ function Signup() {
             className='TextField'
           />
           <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-            Sign up
+            <RouterLink to="/health-form">Sign up</RouterLink>
           </Button>
         </form>
         {message && <div>{message}</div>}
