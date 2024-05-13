@@ -5,9 +5,18 @@ body {
   background-color: #f0f0f0;
   display: flex;
   justify-content: center;
-  min-height: 80vh;
+  min-height: 100vh;
   flex-direction: column;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+body>#root {
+  width: 100%;
+}
+
 
 header.navbar {
   margin-top: 20px;
@@ -15,14 +24,14 @@ header.navbar {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  width: 100%;
   display: flex-start;
   justify-content: space-between;
   align-items: center;
+  margin: 20px;
 }
 
 .navbar-container {
-  width: 90%;
+  width: 100%;
 }
 
 .breadcrumbs {
@@ -39,14 +48,18 @@ header.navbar {
   text-decoration: underline;
 }
 
+
+
 .profile-container-wrapper,
 .profile-info-container {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  width: 100%;
-  max-width: 900px;
   margin: 20px;
+}
+
+.profile-container-wrapper {
+  justify-content: center;
 }
 
 .profile-container {
@@ -111,10 +124,11 @@ header.navbar {
   max-width: 800px; 
   height: 70vh;
   width: 100%; 
+  margin: 0;
 }
 
 .profile-header {
-  color: rgb(0, 0, 40);
+  color: rgb(0, 0, 77);
 }
 
 .info-item {
@@ -125,15 +139,10 @@ header.navbar {
 
 .input-label {
   font-size: 20px; 
-  color: #333; 
+  color: #09005f75; 
   margin-right: 10px;
 }
 
-.info-divider {
-  height: 2px;
-  background-color: #a8a8a8;
-  margin: 10px 0;
-}
 
 .info-content {
   font-size: 16px; 
@@ -148,8 +157,6 @@ header.navbar {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 1800px;
   margin: 20px;
 }
 
@@ -180,7 +187,6 @@ header.navbar {
   .profile-info-container {
     flex-direction: column;
     align-items: center;
-    width: 100%;
     margin: 20px;
   }
 
@@ -191,11 +197,11 @@ header.navbar {
   }
 
   .profile-info-container {
-    width: 100%;
+    margin-top:80px!important;
   }
 
   .health-data-container {
-    width: 100%;
+
     margin: 20px;
   }
 }

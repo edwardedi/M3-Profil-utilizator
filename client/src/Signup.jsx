@@ -4,7 +4,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Container, Typography, TextField, Button, Grid, Avatar, Box } from '@mui/material';
 import axios from 'axios';
 import { Link as RouterLink } from 'react-router-dom';
-
+import './user.css';
 function Signup() {
   const [message, setMessage] = useState('');
 

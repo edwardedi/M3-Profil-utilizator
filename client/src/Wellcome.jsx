@@ -3,7 +3,7 @@ import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';// p
 import { Container, Typography, Button, Avatar, Box } from '@mui/material';
 import "./App.css"
 import { Link as RouterLink } from 'react-router-dom';
-
+import './user.css';
 function Welcome() {
   return (
     <Container component="main" maxWidth="xs">

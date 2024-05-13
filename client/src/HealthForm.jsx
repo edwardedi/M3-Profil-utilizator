@@ -52,7 +52,6 @@ function HealthForm() {
           onChange={(e) => setBirthDate(e.target.value)}
         />
       </div>
-      <div className="info-divider"></div>
       <div className="info-item">
         <InputLabel className="input-label" style={{ fontFamily: 'Arial, sans-serif', fontSize: '20px', fontWeight: 'bold', color: '#09005f75' }}>Height (cm):</InputLabel>
         <TextField
@@ -62,7 +61,6 @@ function HealthForm() {
           onChange={(e) => setHeight(e.target.value)}
         />
       </div>
-      <div className="info-divider"></div>
       <div className="info-item">
         <InputLabel className="input-label" style={{ fontFamily: 'Arial, sans-serif', fontSize: '20px', fontWeight: 'bold', color: '#09005f75' }}>Weight (kg):</InputLabel>
         <TextField

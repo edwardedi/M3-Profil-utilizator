@@ -1,5 +1,5 @@
-// UserProf.jsx
 import React, { useState } from 'react';
+import { Button, Checkbox, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { Link } from 'react-router-dom';
 import './UserProf.css';
 import profilePicture from './profilepic.jpg';
@@ -90,8 +90,8 @@ function UserProf() {
             </div>
             <img className="profile-picture" src={profilePicture} alt="Profile" />
             <div className="edit-buttons">
-              <button className="header-btn" onClick={handleEditProfile}>Edit</button>
-              <button className="header-btn logout-btn">Logout</button>
+              <Button variant="outlined" className="header-btn" onClick={handleEditProfile}>Edit</Button>
+              <Button variant="outlined" className="header-btn logout-btn">Logout</Button>
             </div>
           </div>
         </div>
@@ -101,7 +101,8 @@ function UserProf() {
           <div className="info-item">
             <h2 className="input-label">First Name:</h2>
             {editingProfile ? (
-              <input
+              <TextField
+                className="first-name"
                 type="text"
                 value={firstNameTemp}
                 onChange={(e) => setFirstNameTemp(e.target.value)}
@@ -110,11 +111,11 @@ function UserProf() {
               <h2 className="info-content">{firstName}</h2>
             )}
           </div>
-          <div className="info-divider"></div>
           <div className="info-item">
             <h2 className="input-label">Last Name:</h2>
             {editingProfile ? (
-              <input
+              <TextField
+                className="last-name"
                 type="text"
                 value={lastNameTemp}
                 onChange={(e) => setLastNameTemp(e.target.value)}
@@ -123,11 +124,11 @@ function UserProf() {
               <h2 className="info-content">{lastName}</h2>
             )}
           </div>
-          <div className="info-divider"></div>
           <div className="info-item">
             <h2 className="input-label">Email:</h2>
             {editingProfile ? (
-              <input
+              <TextField
+                className="email"
                 type="email"
                 value={emailTemp}
                 onChange={(e) => setEmailTemp(e.target.value)}
@@ -136,24 +137,10 @@ function UserProf() {
               <h2 className="info-content">{email}</h2>
             )}
           </div>
-          <div className="info-divider"></div>
-          <div className="info-item">
-            <h2 className="input-label">Phone Number:</h2>
-            {editingProfile ? (
-              <input
-                type="text"
-                value={phoneNumberTemp}
-                onChange={(e) => setPhoneNumberTemp(e.target.value)}
-              />
-            ) : (
-              <h2 className="info-content">{phoneNumber}</h2>
-            )}
-          </div>
-          <div className="info-divider"></div>
           {editingProfile && (
             <div className="edit-buttons">
-              <button className="save-btn" onClick={handleSaveProfile}>Save</button>
-              <button className="cancel-btn" onClick={handleCancelProfile}>Cancel</button>
+              <Button variant="outlined" className="save-btn" onClick={handleSaveProfile}>Save</Button>
+              <Button variant="outlined" className="cancel-btn" onClick={handleCancelProfile}>Cancel</Button>
             </div>
           )}
         </div>
@@ -165,66 +152,61 @@ function UserProf() {
           <div className="info-item">
             <h2 className="input-label">Birth Date:</h2>
             {editingHealthData ? (
-              <input
-                className="health-data-input"
-                type="date"
-                value={birthDateTemp}
-                onChange={(e) => setBirthDateTemp(e.target.value)}
-              />
+                <TextField
+                  className="health-data-input"
+                  type="date"
+                  value={birthDate}
+                  onChange={(e) => setBirthDate(e.target.value)}
+                />
             ) : (
               <h2 className="info-content">{birthDate}</h2>
             )}
           </div>
-          <div className="info-divider"></div>
           <div className="info-item">
             <h2 className="input-label">Height (cm):</h2>
             {editingHealthData ? (
-              <input
+            <TextField
                 className="health-data-input"
                 type="text"
-                value={heightTemp}
-                onChange={(e) => setHeightTemp(e.target.value)}
+                value={height}
+                onChange={(e) => setHeight(e.target.value)}
               />
             ) : (
               <h2 className="info-content">{height}</h2>
             )}
           </div>
-          <div className="info-divider"></div>
           <div className="info-item">
             <h2 className="input-label">Weight (kg):</h2>
             {editingHealthData ? (
-              <input
-                className="health-data-input"
-                type="text"
-                value={weightTemp}
-                onChange={(e) => setWeightTemp(e.target.value)}
-              />
+              <TextField
+              className="health-data-input"
+              type="text"
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+            />
             ) : (
               <h2 className="info-content">{weight}</h2>
             )}
           </div>
-          <div className="info-divider"></div>
           <div className="info-item">
             <h2 className="input-label">Gender:</h2>
             {editingHealthData ? (
-              <select
-                className="health-data-input"
-                value={genderTemp}
-                onChange={(e) => setGenderTemp(e.target.value)}
-              >
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </select>
+            <Select
+                     className="health-data-input"
+                     value={gender}
+                     onChange={(e) => setGender(e.target.value)}>
+                     <MenuItem value="Male">Male</MenuItem>
+                     <MenuItem value="Female">Female</MenuItem>
+                     <MenuItem value="Other">Other</MenuItem>
+                   </Select>
             ) : (
               <h2 className="info-content">{gender}</h2>
             )}
           </div>
-          <div className="info-divider"></div>
           <div className="info-item">
-            <h2 className="input-label">Needs Special Assistance:</h2>
-            {editingHealthData ? (
-              <input
+          <InputLabel className='input-laber' style={{ fontFamily: 'Arial, sans-serif', fontSize: '20px', fontWeight: 'bold', color: '#09005f75' }}>Needs Special Assistance:</InputLabel>
+          {editingHealthData ? (
+              <Checkbox
                 className="health-data-input"
                 type="checkbox"
                 checked={needsSpecialAssistanceTemp}
@@ -234,16 +216,15 @@ function UserProf() {
               <h2 className="info-content">{needsSpecialAssistance ? 'Yes' : 'No'}</h2>
             )}
           </div>
-          <div className="info-divider"></div>
           {editingHealthData && (
             <div className="health-data-buttons">
-              <button className="save-btn" onClick={handleSaveHealthData}>Save</button>
-              <button className="cancel-btn" onClick={handleCancelHealthData}>Cancel</button>
+              <Button varinat="outlined" className="save-btn" onClick={handleSaveHealthData}>Save</Button>
+              <Button varinat="outlined" className="cancel-btn" onClick={handleCancelHealthData}>Cancel</Button>
             </div>
           )}
           {!editingHealthData && (
             <div className="health-data-buttons">
-              <button className="edit-health-btn" onClick={handleEditHealthData}>Edit Health Data</button>
+              <Button variant="outlined" className="edit-health-btn" onClick={handleEditHealthData}>Edit Health Data</Button>
             </div>
           )}
         </div>
